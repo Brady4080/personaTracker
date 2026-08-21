@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* Container for the 3 buttons */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+/* Base reusable button design for all 3 games */
+.game-card {
+  @apply relative h-64 rounded-2xl border overflow-hidden p-6 text-left flex flex-col justify-between transition-all duration-300;
+  cursor: pointer;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+}
+
+.card-p3 {
+  @apply border-blue-500/50 bg-blue-500 hover:border-blue-400 hover:bg-blue-600/40; /* bg slate is what changes the background*/
+  background-image: url('https://cdn2.steamgriddb.com/logo_thumb/be9a22cb85032b37ebb2eee3938bdb9b.png');
+  background-size: 14rem auto;
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+
+.card-p4 {
+  @apply border-yellow-500/50 bg-yellow-400 hover:border-yellow-400 hover:bg-yellow-600/40;
+  background-image: url('https://cdn2.steamgriddb.com/logo_thumb/5079e80be076b97b5372c64431554753.png');
+  background-size: 15rem auto;
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+.card-p5 {
+  @apply border-red-500/50 bg-red-700 hover:border-red-400 hover:bg-red-600/40;
+  background-image: url('https://cdn2.steamgriddb.com/logo_thumb/ba038e2a20ded4a1d146841e6ed42f22.png');
+  background-size: 15rem auto;
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+
+/* Card inner text styling */
+.card-tag {
+  @apply text-xs font-black uppercase tracking-wider block mb-1;
+}
+.text-p3 { @apply text-black; }
+.text-p4 { @apply text-black; }
+.text-p5 { @apply text-black; }
+
+.card-footer {
+  @apply relative z-10 flex items-center justify-between text-xs font-semibold text-black;
+}
