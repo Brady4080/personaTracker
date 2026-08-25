@@ -1,6 +1,49 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&display=swap');
 
-/* Container for the 3 buttons */
+.logo-container {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+
+/* Metallic gradient text with blue ambient glow */
+.logo-persona {
+  background: linear-gradient(180deg, #ff3737 0%, #496aff 60%, #ff2828 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 18px rgba(59, 130, 246, 0.7));
+}
+
+.logo-tracker {
+  color: #ffffff;
+  border-bottom: 3px solid #3b82f6;
+  padding-bottom: 2px;
+  margin-left: 0.4rem;
+  filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+}
+.landing-wrapper {
+  @apply min-h-screen w-full flex flex-col items-center justify-center text-center p-8;
+}
+
+.hero-header {
+  @apply max-w-2xl mb-12 space-y-3;
+}
+
+.hero-title {
+  @apply text-4xl sm:text-5xl font-black tracking-tight text-blue-100 drop-shadow-[0_0_15px_rgba(59,130,246,0.3)];
+
+}
+
+.hero-subtitle {
+  @apply text-slate-400 text-base sm:text-lg font-normal leading-relaxed;
+  padding: 2rem;
+}
+
 .game-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

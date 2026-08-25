@@ -1,19 +1,10 @@
 import { useState } from 'react'
-import App from './App.jsx'
 import './landingPage.css'
+import P5R from './p5r'
 
 function LandingPage() {
   const [currentPage, setCurrentPage] = useState('landing')
 
-  // Currently a temp page for testing flipping back and forth on pages
-  if (currentPage === 'temp') {
-    return (
-      <div>
-        <button onClick={() => setCurrentPage('landing')}>← Back Home</button>
-        <App />
-      </div>
-    )
-  }
   if (currentPage === 'p3r'){
     return (
       <div></div>
@@ -26,19 +17,25 @@ function LandingPage() {
   }
   if (currentPage === 'p5r'){
     return (
-      <div></div>
+      <div>
+        <P5R />
+      </div>
     )
   }
 
 
   // Landing Page
   return (
-    <>
-      <section id="center">
-        <h1>Persona Tracker</h1>
-        <h3>Persona Tracker is your all in one companion that makes planning and understanding the Persona games easy</h3>
-        <button onClick={() => setCurrentPage('landing')} className="hover:text-red-500">Home</button>
-        <button onClick={() => setCurrentPage('temp')} className="hover:text-red-500">Temp</button>
+    <div className="landing-wrapper">
+        <header className="hero-header">
+          <div className="logo-container mb-4">
+            <span className="logo-persona">PERSONA</span>
+            <span className="logo-tracker">TRACKER</span>
+          </div>
+          <h3 className="hero-subtitle">
+            Welcome to the Persona Tracker. Your all-in-one companion for navigating the Persona series.
+          </h3>
+        </header>
 
         <div className="game-grid">
         {/* Persona 3 Reload */}
@@ -74,9 +71,7 @@ function LandingPage() {
           </div>
         </button>
       </div>
-      </section>
-      <section id="spacer"></section>
-    </>
+    </div>
   )
 }
 
