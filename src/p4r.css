@@ -1,5 +1,5 @@
 /* Sticky top navigation bar */
-.p5r-navbar {
+.p4r-navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,14 +12,8 @@
   z-index: 50;
 }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem; /* Controls spacing between links cleanly */
-}
-
 /* Reset button default styles for clickable logo */
-.nav-btn {
+.nav-logo-btn {
   background: transparent;
   border: none;
   cursor: pointer;
@@ -29,7 +23,7 @@
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.nav-btn:hover {
+.nav-logo-btn:hover {
   transform: scale(1.05);
   filter: brightness(1.2);
 }
@@ -66,65 +60,4 @@
   letter-spacing: 0.15em;
   color: #ffffff;
   filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.4));
-}
-
-/* Nav buttons */
-.nav-buttons {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-style: italic;
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  color: #ffffff;
-  filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.4));
-}
-
-/* P5R Dahsboard */
-.p5r-dashboard-summary {
-  display: flex;
-  gap: 1.5rem;
-  margin: 1.5rem 0;
-  width: 100%;
-}
-
-.p5r-socialstats-card,
-.p5r-royalcheck-card {
-  flex: 1;
-  background: rgba(18, 18, 24, 0.85);
-  border: 1px solid rgba(59, 130, 246, 0.4); /* P5 Red Border Accent */
-  border-radius: 8px;
-  padding: 1.25rem;
-  backdrop-filter: blur(8px);
-}
-
-.widget-title {
-  color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid #4f44ef;
-  padding-bottom: 0.4rem;
-}
-
-.stat-row, .req-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.4rem 0.6rem;
-  margin-bottom: 0.4rem;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 4px;
-}
-
-.stat-name, .req-name {
-  text-transform: capitalize;
-  color: #e2e8f0;
-  font-weight: 500;
-}
-
-.stat-level, .req-progress {
-  color: #a5c3fc;
-  font-weight: 700;
 }

@@ -1,28 +1,8 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './landingPage.css'
-import P5R from './p5r'
 
 function LandingPage() {
-  const [currentPage, setCurrentPage] = useState('landing')
-
-  if (currentPage === 'p3r'){
-    return (
-      <div></div>
-    )
-  }
-  if (currentPage === 'p4r'){
-    return (
-      <div></div>
-    )
-  }
-  if (currentPage === 'p5r'){
-    return (
-      <div>
-        <P5R />
-      </div>
-    )
-  }
-
+  const navigate = useNavigate()
 
   // Landing Page
   return (
@@ -39,7 +19,7 @@ function LandingPage() {
 
         <div className="game-grid">
         {/* Persona 3 Reload */}
-        <button onClick={() => setCurrentPage('p3r')} className="game-card card-p3">
+        <button onClick={() => navigate('/p3r')} className="game-card card-p3">
           <div>
             <span className="card-tag text-p3">Select Game</span>
           </div>
@@ -50,7 +30,7 @@ function LandingPage() {
         </button>
 
         {/* Persona 4 Golden */}
-        <button onClick={() => setCurrentPage('p4r')} className="game-card card-p4">
+        <button onClick={() => navigate('/p4r')} className="game-card card-p4">
           <div>
             <span className="card-tag text-p4">Select Game</span>
           </div>
@@ -61,7 +41,7 @@ function LandingPage() {
         </button>
 
         {/* Persona 5 Royal */}
-        <button onClick={() => setCurrentPage('p5r')} className="game-card card-p5">
+        <button onClick={() => navigate('/p5r')} className="game-card card-p5">
           <div>
             <span className="card-tag text-p5">Select Game</span>
           </div>
