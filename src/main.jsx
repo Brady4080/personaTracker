@@ -6,6 +6,7 @@ import LandingPage from './landingPage.jsx'
 import P5R from './p5r.jsx'
 import P4R from './p4r.jsx'
 import P3R from './p3r.jsx'
+import P5RFusion from './p5rfusioncal.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/p3r" element={<P3R />} />
         <Route path="/p4r" element={<P4R />} />
         <Route path="/p5r" element={<P5R />} />
+        <Route path="/p5rfusion" element={<P5RFusion />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

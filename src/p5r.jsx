@@ -41,7 +41,7 @@ function P5R() {
           <button className="nav-btn" onClick={() => navigate('/p5r')} title="P5R Home">
             <span className="nav-buttons">Gear Guide</span>
           </button>
-          <button className="nav-btn" onClick={() => navigate('/p5r')} title="P5R Home">
+          <button className="nav-btn" onClick={() => navigate('/p5rfusion')} title="P5R Home">
             <span className="nav-buttons">Fusion Calculator</span>
           </button>
         </div>
