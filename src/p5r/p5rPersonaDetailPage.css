@@ -1,0 +1,32 @@
+.p5rdetailHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 1.5rem;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.4));
+    padding: 1rem;
+}
+
+.p5rdetailHeader h1,p {
+    padding: 0.5rem;
+}
+.p5rdetailsTitles {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 1.25rem;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.4));
+    padding-top: 1rem;
+}

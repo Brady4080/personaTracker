@@ -1,10 +1,8 @@
-import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import './p5r.css'
+import P5Rnav from '../personaAll/personaCompents'
 
 function P5R() {
-  const navigate = useNavigate()
-
   // Social Stats start at Rank 1 in P5R
   const [stats, setStats] = useState({
     knowledge: 1,
@@ -23,29 +21,7 @@ function P5R() {
 
   return (
     <div className="p5r-wrapper">
-      <nav className="p5r-navbar">
-        <button className="nav-btn" onClick={() => navigate('/')} title="Back to Home">
-          <div className="logo-stacked">
-            <span className="logo-persona-sm">PERSONA</span>
-            <span className="logo-tracker-sm">TRACKER</span>
-          </div>
-        </button>
-
-        <div className='nav-links'>
-          <button className="nav-btn" onClick={() => navigate('/p5r')} title="P5R Home">
-            <span className="nav-buttons">Home</span>
-          </button>
-          <button className="nav-btn" onClick={() => navigate('/p5r')} title="P5R Home">
-            <span className="nav-buttons">Confidants</span>
-          </button> 
-          <button className="nav-btn" onClick={() => navigate('/p5r')} title="P5R Home">
-            <span className="nav-buttons">Gear Guide</span>
-          </button>
-          <button className="nav-btn" onClick={() => navigate('/p5rfusion')} title="P5R Home">
-            <span className="nav-buttons">Fusion Calculator</span>
-          </button>
-        </div>
-      </nav>
+      <P5Rnav />
 
       <div className="p5r-dashboard-summary">
         {/* Social Stats Tracker Card */}
