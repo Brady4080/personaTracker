@@ -1,11 +1,14 @@
 import { useParams, Link } from 'react-router-dom';
+import { useMemo } from 'react';
 import './p5rPersonaDetailPage.css'
 import P5Rnav from '../personaAll/personaCompents'
 
-import { rarePersonaeRoyal, rareCombosRoyal, arcana2CombosRoyal, specialCombosRoyal, dlcPersonaRoyal, inheritanceChartRoyal } from '../../data/p5r/Data5Royal'
+import { inheritanceChartRoyal } from '../../data/p5r/Data5Royal'
 import { itemMapRoyal } from '../../data/p5r/ItemDataRoyal'
 import { skillMapRoyal } from '../../data/p5r/SkillDataRoyal'
 import { personaMapRoyal } from '../../data/p5r/PersonaDataRoyal';
+import { FusionCalculator } from '../../data/p5r/FusionCalculator';
+import { buildPersonaeByArcana } from '../../data/p5r/p5rHelpers';
 
 function P5RPersonaDetailPage() {
   const { personaName } = useParams();
@@ -14,9 +17,31 @@ function P5RPersonaDetailPage() {
   const personaData = personaMapRoyal[decodedName];
   const itemData = itemMapRoyal[personaData.item];
   const itemDatar = itemMapRoyal[personaData.itemr];
+  const skillData = skillMapRoyal[personaData.item]
+  const skillDatar = skillMapRoyal[personaData.itemr]
   const inheritanceData = inheritanceChartRoyal[personaData.inherits]; 
 
+  const calculator = useMemo(() => {
+    const personaeByArcana = buildPersonaeByArcana();
+    return new FusionCalculator(personaeByArcana);
+  }, []);
 
+  const currentPersona = useMemo(() => {
+    return personaData ? { name: decodedName, ...personaData } : null;
+  }, [decodedName, personaData]);
+
+  const pFusion = useMemo(() => {
+    if (!currentPersona) return [];
+    return calculator.getRecipes(currentPersona);
+  }, [calculator, currentPersona]);
+
+  // "Fusion from this Persona" (Optional)
+  const fusionsFrom = useMemo(() => {
+    if (!currentPersona) return [];
+    const recipes = calculator.getAllResultingRecipesFrom(currentPersona);
+    
+    return recipes.sort((a, b) => a.result.level - b.result.level);
+  }, [calculator, currentPersona]);
 
   if (!personaData) {
     return (
@@ -54,15 +79,15 @@ function P5RPersonaDetailPage() {
                 </thead>
                 <tbody>
                   <td>Normal</td>
-                  <td>{itemData.type}</td>
-                  <td>{personaData.item}</td>
-                  <td>{itemData.description}</td>
+                  <td>{itemData?.type || skillData?.element || "-"}</td>
+                  <td>{personaData?.item || "-"}</td>
+                  <td>{itemData?.description || skillData?.effect || "-"}</td>
                 </tbody>
                 <tbody>
                   <td>Fusion Alarm</td>
-                  <td>{itemDatar.type}</td>
-                  <td>{personaData.itemr}</td>
-                  <td>{itemData.description}</td>
+                  <td>{itemDatar?.type || skillDatar?.element || "-"}</td>
+                  <td>{personaData?.itemr || "-"}</td>
+                  <td>{itemData?.description || skillDatar?.effect || "-"}</td>
                 </tbody>
               </table>
         </div>
@@ -185,6 +210,72 @@ function P5RPersonaDetailPage() {
                   })}
                 </tbody>
               </table>
+        </div>
+
+        <h1 className='p5rdetailsTitles'>Fusion to this Persona</h1>
+        <div className='table-container'>
+            <table className="p5rFusionTable">
+              <thead>
+                <tr>
+                  <th>Cost</th>
+                  <th>Persona 1</th>
+                  <th>Persona 2</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pFusion.map((recipe, index) => {
+                  const p1 = recipe.sources[0];
+                  const p2 = recipe.sources[1];
+                  return (
+                    <tr key={index}>
+                      <td>¥{recipe.cost?.toLocaleString() || '-'}</td>
+                      <td>
+                        <Link to={`/persona/${encodeURIComponent(p1.name)}`}>
+                          {p1.name} ({p1.arcana} Lv{p1.level})
+                        </Link>
+                      </td>
+                      <td>
+                        <Link to={`/persona/${encodeURIComponent(p2.name)}`}>
+                          {p2.name} ({p2.arcana} Lv{p2.level})
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+        </div>
+
+        <h1 className='p5rdetailsTitles'>Fusion from this Persona</h1>
+        <div className='table-container'>
+            <table className="p5rFusionTable">
+              <thead>
+                <tr>
+                  <th>Fuse With</th>
+                  <th>Resulting Persona</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fusionsFrom.map((recipe, index) => {
+                  const partner = recipe.sources[1];
+                  const result = recipe.result;
+                  return (
+                    <tr key={index}>
+                      <td>
+                        <Link to={`/persona/${encodeURIComponent(partner.name)}`}>
+                          {partner.name} ({partner.arcana} Lv{partner.level})
+                        </Link>
+                      </td>
+                      <td>
+                        <Link to={`/persona/${encodeURIComponent(result.name)}`}>
+                          {result.name} ({result.arcana} Lv{result.level})
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
         </div>
       </div>
     </div>

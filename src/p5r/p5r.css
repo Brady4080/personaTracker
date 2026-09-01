@@ -84,11 +84,19 @@
   display: flex;
   gap: 1.5rem;
   margin: 1.5rem 0;
+  padding-top: 2.5rem;
   width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  overflow-x: auto;
 }
 
 .p5r-socialstats-card,
 .p5r-royalcheck-card {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  overflow-x: auto;
   flex: 1;
   background: rgba(18, 18, 24, 0.85);
   border: 1px solid rgba(59, 130, 246, 0.4); /* P5 Red Border Accent */
@@ -127,4 +135,52 @@
 .stat-level, .req-progress {
   color: #a5c3fc;
   font-weight: 700;
+}
+.stat-row,
+.req-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.stat-controls,
+.req-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat-name,
+.req-name {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.p5r-btn {
+  background: #e60012;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.p5r-btn:hover:not(:disabled) {
+  background: #ff2a3b;
+  transform: scale(1.05);
+}
+
+.p5r-btn:disabled {
+  background: #444;
+  color: #888;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
