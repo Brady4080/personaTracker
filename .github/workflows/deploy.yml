@@ -1,0 +1,36 @@
+name: Deploy to Organization Pages
+
+on:
+  push:
+    branches:
+      - main  # or master, depending on your main branch name
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Duplicate index.html for SPA Routing (404.html)
+        run: cp dist/index.html dist/404.html
+
+      - name: Deploy to Organization Repo
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.ORG_DEPLOY_TOKEN }}
+          repository-name: Persona-Tracker/personaTracker # 👈 Organization / Repo Name
+          branch: main # Pushes build files directly to org repo's main branch
+          folder: dist # The folder Vite builds into
