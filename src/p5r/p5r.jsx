@@ -1,47 +1,15 @@
-import { useState } from 'react'
 import './p5r.css'
 import P5Rnav from '../personaAll/personaCompents'
-import { useLocalStorage } from '../hooks/useLocalStorage'
+import DailyGuide from './dailyGuide'
+import {
+  useP5R,
+  STAT_MAX,
+  CONFIDANT_MAX,
+  ROYAL_REQUIREMENTS,
+} from './p5rcontext'
 
 function P5R() {
-  const ROYAL_REQUIREMENTS = {
-    maruki: { req: 9, deadline: 'Nov 17' },
-    akechi: { req: 8, deadline: 'Nov 17' },
-    kasumi: { req: 5, deadline: 'Dec 18' },
-  }
-
-  // Social Stats start at Rank 1 in P5R
-  const STAT_MAX = 5
-  const [stats, setStats] = useLocalStorage('p5r_social_stats', {
-    knowledge: 1,
-    guts: 1,
-    proficiency: 1,
-    kindness: 1,
-    charm: 1,
-  })
-
-  // Royal Trio Confidants
-  const CONFIDANT_MAX = 10
-  const [royal, setRoyal] = useLocalStorage('p5r_royal_confidants', {
-    maruki: 1,
-    akechi: 1,
-    kasumi: 1,
-  })
-
-  const updateStat = (key, delta) => {
-    setStats((prev) => ({
-      ...prev,
-      [key]: Math.min(STAT_MAX, Math.max(1, prev[key] + delta)),
-    }))
-  }
-
-  // Helper to safely update confidant rank within [1, maxRank]
-  const updateRoyal = (key, delta) => {
-    setRoyal((prev) => ({
-      ...prev,
-      [key]: Math.min(CONFIDANT_MAX, Math.max(1, prev[key] + delta)),
-    }))
-  }
+  const { stats, royal, updateStat, updateRoyal } = useP5R()
 
   return (
     <div className="p5r-wrapper">
@@ -124,6 +92,13 @@ function P5R() {
           </div>
         </div>
       </div>
+      
+      <DailyGuide />
+
+
+
+
+
     </div>
   )
 }
