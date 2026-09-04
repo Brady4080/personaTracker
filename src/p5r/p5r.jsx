@@ -23,21 +23,9 @@ function P5R() {
               <div key={stat} className={`stat-row stat-${stat}`}>
                 <span className="stat-name">{stat}</span>
                 <div className="stat-controls">
-                  <button
-                    className="p5r-btn"
-                    onClick={() => updateStat(stat, -1)}
-                    disabled={level <= 1}
-                  >
-                    -
-                  </button>
+                  <button className="p5r-btn" onClick={() => updateStat(stat, -1)} disabled={level <= 1}> - </button>
                   <span className="stat-level">Lvl. {level}</span>
-                  <button
-                    className="p5r-btn"
-                    onClick={() => updateStat(stat, 1)}
-                    disabled={level >= STAT_MAX}
-                  >
-                    +
-                  </button>
+                  <button className="p5r-btn" onClick={() => updateStat(stat, 1)} disabled={level >= STAT_MAX}> + </button>
                 </div>
               </div>
             ))}
@@ -57,34 +45,18 @@ function P5R() {
               return (
                 <div key={key} className="req-row">
                   <div className="req-info">
-                    <span className="req-name">{key}</span>
-                    <span
-                      className={`req-target-badge ${
-                        isReqMet ? 'met' : 'pending'
-                      }`}
-                    >
+                    <span className="req-name">{key} </span>
+                    <span className={`req-target-badge ${isReqMet ? 'met' : 'pending'}`}>
                       (Need Rank {req} by {deadline})
                     </span>
                   </div>
 
                   <div className="req-controls">
-                    <button
-                      className="p5r-btn"
-                      onClick={() => updateRoyal(key, -1)}
-                      disabled={rank <= 1}
-                    >
-                      -
-                    </button>
+                    <button className="p5r-btn" onClick={() => updateRoyal(key, -1)} disabled={rank <= 1}> - </button>
                     <span className="req-progress">
                       {rank} / {CONFIDANT_MAX}
                     </span>
-                    <button
-                      className="p5r-btn"
-                      onClick={() => updateRoyal(key, 1)}
-                      disabled={rank >= CONFIDANT_MAX}
-                    >
-                      +
-                    </button>
+                    <button className="p5r-btn" onClick={() => updateRoyal(key, 1)} disabled={rank >= CONFIDANT_MAX}> + </button>
                   </div>
                 </div>
               )
